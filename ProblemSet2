@@ -42,3 +42,19 @@ def avg_weekend_temperature(filename):
     #Execute your SQL command against the pandas frame
     avg_weekend_temperature = pandasql.sqldf(q.lower(), locals())
     return avg_weekend_temperature
+#2.4 Mean Temp on Rainy Days
+import pandas
+import pandasql
+
+def avg_min_temperature(filename):
+    weather_data = pandas.read_csv(filename)
+
+    q = """
+    SELECT avg(cast (mintempi as integer))
+    FROM weather_data
+    WHERE rain==1 and mintempi>55
+    """
+    
+    #Execute your SQL command against the pandas frame
+    avg_min_temp_rainy = pandasql.sqldf(q.lower(), locals())
+    return avg_min_temp_rainy
